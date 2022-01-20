@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
-    public GameObject obstaclePrefab;
+    public GameObject[] obstaclesPrefab;
     private Vector3 spawnPos = new Vector3(25, 0, 0);
     private float start = 2.0f;
-    private float repeatRate = 3.0f;
+    private float repeatRate = 3.5f;
     private PlayerController playerControllerScript;
 
     // Start is called before the first frame update
@@ -27,7 +27,16 @@ public class SpawnManager : MonoBehaviour
     {
         if (playerControllerScript.gameOver == false)
         {
-            Instantiate(obstaclePrefab, spawnPos, obstaclePrefab.transform.rotation);
+            int index = Random.Range(0, obstaclesPrefab.Length);           
+            Instantiate(obstaclesPrefab[index], spawnPos, obstaclesPrefab[index].transform.rotation);
+            if (index == 0)
+            {
+                playerControllerScript.speedUpPlayer = true;
+            }
+            else
+            {
+                playerControllerScript.speedUpPlayer = false;
+            }
         }
             
     }

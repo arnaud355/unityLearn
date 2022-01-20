@@ -23,9 +23,13 @@ public class PlayerController : MonoBehaviour
     private AudioSource playerAudio;
     public AudioClip jumpSound;
     public AudioClip crashSound;
-    public float jumpForce = 10;
+    public float jumpForce = 10.0f;
+    public float jumpForceD = 14.0f;
     public float gravityModifier;
     public bool isJumping = true;
+    public bool doubleJumping = false;
+    public bool speedUpPlayer = false;
+    public bool isSpeedUpPlayer = false;
     public bool gameOver = false;
 
     // Start is called before the first frame update
@@ -40,12 +44,32 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && isJumping && !gameOver)
+        if (Input.GetKeyDown(KeyCode.Space) && isJumping && !gameOver && !doubleJumping)
         {
             playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             playerAnim.SetTrigger("Jump_trig");
             isJumping = false;
+            doubleJumping = true;
             playerAudio.PlayOneShot(jumpSound,1.0f);
+            dirtParticle.Stop();
+        }
+        else if (Input.GetKeyDown(KeyCode.Space) && !isJumping && !gameOver && doubleJumping)
+        {
+            playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            playerAnim.SetTrigger("Jump_trig");
+            isJumping = false;
+            doubleJumping = false;
+            playerAudio.PlayOneShot(jumpSound, 1.0f);
+            dirtParticle.Stop();
+        }
+
+        if (Input.GetKeyDown(KeyCode.S) && isJumping && !gameOver && !doubleJumping)
+        {
+            playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            playerAnim.SetTrigger("Jump_trig");
+            isJumping = false;
+            doubleJumping = true;
+            playerAudio.PlayOneShot(jumpSound, 1.0f);
             dirtParticle.Stop();
         }
     }
@@ -54,8 +78,20 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Ground"))
         {
-            isJumping = true;
-            dirtParticle.Play();
+            if (speedUpPlayer)
+            {
+                isSpeedUpPlayer = true;
+                isJumping = true;
+                doubleJumping = false;
+                dirtParticle.Play();
+            }
+            else
+            {
+                isSpeedUpPlayer = false;
+                isJumping = true;
+                doubleJumping = false;
+                dirtParticle.Play();
+            }
         }
         else if (collision.gameObject.CompareTag("Obstacle"))
         {
