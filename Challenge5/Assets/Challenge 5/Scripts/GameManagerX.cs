@@ -10,13 +10,13 @@ public class GameManagerX : MonoBehaviour
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI gameOverText;
     public GameObject titleScreen;
-    public Button restartButton; 
-
+    public Button restartButton;
+    
     public List<GameObject> targetPrefabs;
 
     private int score;
     private float spawnRate = 1.5f;
-    public bool isGameActive;
+    public bool isGameActive = false;
 
     private float spaceBetweenSquares = 2.5f; 
     private float minValueX = -3.75f; //  x value of the center of the left-most square
