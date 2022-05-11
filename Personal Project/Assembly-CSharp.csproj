@@ -59,6 +59,18 @@
     <Compile Include="Assets\Scripts\PlayerController.cs" />
     <Compile Include="Assets\Scripts\MoveDown.cs" />
     <Compile Include="Assets\Scripts\SpawnManager.cs" />
+    <Compile Include="Assets\Asset Store\Gems Ultimate Pack\Scripts\AnimationScript.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Course Library\Fonts\Roboto\LICENSE.txt" />
+    <None Include="Assets\Course Library\Fonts\Margarine\OFL.txt" />
+    <None Include="Assets\Course Library\_Source_Files\Materials\UnlitVertexColour_Alpha.shader" />
+    <None Include="Assets\Course Library\Fonts\Baloo_Chettan\OFL.txt" />
+    <None Include="Assets\Asset Store\Gems Ultimate Pack\READ ME.txt" />
+    <None Include="Assets\Course Library\_Source_Files\_LICENSE.txt" />
+    <None Include="Assets\Course Library\Fonts\Indie_Flower\OFL.txt" />
+    <None Include="Assets\Course Library\Fonts\Exo_2\OFL.txt" />
+    <None Include="Assets\Course Library\Fonts\Oswald\OFL.txt" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
@@ -649,20 +661,22 @@
     <Reference Include="Unity.TextMeshPro">
       <HintPath>Library\ScriptAssemblies\Unity.TextMeshPro.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEditor.UI">
-      <HintPath>Library\ScriptAssemblies\UnityEditor.UI.dll</HintPath>
-    </Reference>
     <Reference Include="Unity.PlasticSCM.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.PlasticSCM.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Rider.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.Rider.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.UI">
-      <HintPath>Library\ScriptAssemblies\UnityEngine.UI.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="UnityEditor.UI.csproj">
+      <Project>{D5434E43-8401-94C2-B9FA-2F284F2C2A1B}</Project>
+      <Name>UnityEditor.UI</Name>
+    </ProjectReference>
+    <ProjectReference Include="UnityEngine.UI.csproj">
+      <Project>{2F9F85CF-D9FA-7267-0D78-407161E2B6E9}</Project>
+      <Name>UnityEngine.UI</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />

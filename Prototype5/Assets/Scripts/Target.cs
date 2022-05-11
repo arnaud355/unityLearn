@@ -5,13 +5,14 @@ using UnityEngine;
 public class Target : MonoBehaviour
 {
     private Rigidbody targetRb;
-    private float minSpeed = 12;
-    private float maxSpeed = 16;
-    private float maxTorque = 10;
-    private float xRange = 4;
-    private float ySpawnPos = -2;
+    private float minSpeed = 12.0f;
+    private float maxSpeed = 16.0f;
+    private float maxTorque = 10.0f;
+    private float xRange = 4.0f;
+    private float ySpawnPos = -2.0f;
     private GameManager gameManager;
     public int pointValue;
+    public int livesT = 3;
     public ParticleSystem explosionParticle;
 
     // Start is called before the first frame update
@@ -47,9 +48,17 @@ public class Target : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         Destroy(gameObject);
-        if (!gameObject.CompareTag("Bad"))
+        if (other.gameObject.CompareTag("Sensor") && !gameObject.CompareTag("Bad"))
         {
-            gameManager.GameOver();
+            if(livesT <= 0)
+            {
+                gameManager.GameOver();
+            }
+            else
+            {
+                gameManager.UpdateLives(1);
+                livesT -= 1;
+            }
         }
         
     }

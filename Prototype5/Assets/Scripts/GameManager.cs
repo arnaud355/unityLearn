@@ -11,10 +11,15 @@ public class GameManager : MonoBehaviour
     public List<GameObject> targets;
     private float spawnRate = 1.0f;
     public TextMeshProUGUI scoreText;
+    public TextMeshProUGUI livesText;
     public TextMeshProUGUI gameOverText;
+    [SerializeField]
+    private Slider slider;
     public Button restartButton;
     private int score;
+    private int lives = 3;
     public bool isGameActive;
+    public bool isGamePause = false;
     public GameObject titleScreen;
 
     // Start is called before the first frame update
@@ -43,6 +48,17 @@ public class GameManager : MonoBehaviour
         score += scoreToAdd;
         scoreText.text = "Score: " + score;
     }
+
+    public void UpdateLives(int livesToSubtract)
+    {
+        lives -= livesToSubtract;
+        livesText.text = "Lives: " + lives;
+        if(lives <= 0)
+        {
+            livesText.text = "Lives: " + 0;
+            GameOver();
+        }
+    }
     public void GameOver()
     {
         restartButton.gameObject.SetActive(true);
@@ -58,10 +74,13 @@ public class GameManager : MonoBehaviour
     public void StartGame(int difficulty)
     {
         titleScreen.gameObject.SetActive(false);
+        slider.gameObject.SetActive(false);
         isGameActive = true;
         score = 0;
+        lives = 3;
         spawnRate /= difficulty;
         StartCoroutine(SpawnTarget());
         UpdateScore(0);
+        UpdateLives(0);
     }
 }
