@@ -60,6 +60,7 @@
     <Compile Include="Assets\Scripts\ResourcePile.cs" />
     <Compile Include="Assets\Scripts\MenuUIHandler.cs" />
     <Compile Include="Assets\Scripts\UserControl.cs" />
+    <Compile Include="Assets\Scripts\MainManager.cs" />
     <Compile Include="Assets\Scripts\Helpers\AnimatorHandler.cs" />
     <Compile Include="Assets\Scripts\Helpers\ResourceItem.cs" />
     <Compile Include="Assets\Scripts\Helpers\ColorHandler.cs" />
@@ -73,7 +74,6 @@
     <Compile Include="Assets\Scripts\Unit.cs" />
     <Compile Include="Assets\Scripts\Helpers\ColorPicker.cs" />
     <Compile Include="Assets\Optimization\Scripts\OptimManager.cs" />
-    <Compile Include="Assets\Scripts\MainManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
